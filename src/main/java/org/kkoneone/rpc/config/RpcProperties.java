@@ -20,7 +20,7 @@ import java.util.Map;
 @Data
 public class RpcProperties {
     /**
-     * netty 端口
+     * netty端口  两个服务就是两个进程，进程间通信就需要端口
      */
     @PropertiesField
     private Integer port;
