@@ -24,9 +24,14 @@ public class ProviderPostProcessor implements InitializingBean, BeanPostProcesso
 
     }
 
+    /**
+     * 设置配置文件
+     * @param environment
+     */
     @Override
     public void setEnvironment(Environment environment) {
         RpcProperties properties = RpcProperties.getInstance();
+        //通过init方法将environment中的参数配置到RpcProperties中方便全局使用
 
     }
 }
