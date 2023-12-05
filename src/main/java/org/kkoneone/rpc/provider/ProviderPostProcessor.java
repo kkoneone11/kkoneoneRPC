@@ -1,6 +1,7 @@
 package org.kkoneone.rpc.provider;
 
 import io.netty.bootstrap.ServerBootstrap;
+import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -13,6 +14,7 @@ import org.kkoneone.rpc.config.RpcProperties;
 import org.kkoneone.rpc.protocol.codec.RpcDecoder;
 import org.kkoneone.rpc.protocol.codec.RpcEncoder;
 import org.kkoneone.rpc.protocol.handler.service.RpcRequestHandler;
+import org.kkoneone.rpc.protocol.handler.service.ServiceAfterFilterHandler;
 import org.kkoneone.rpc.protocol.handler.service.ServiceBeforeFilterHandler;
 import org.kkoneone.rpc.registry.RegistryFactory;
 import org.kkoneone.rpc.registry.RegistryService;
@@ -71,10 +73,23 @@ public class ProviderPostProcessor implements InitializingBean, BeanPostProcesso
                     })
                     .childOption(ChannelOption.SO_KEEPALIVE, true);
             //开启管道异步获取结果
-
+            ChannelFuture channelFuture = bootstrap.bind(this.serverAddress, serverPort).sync();
+            logger.info("server addr {} started on port {}", this.serverAddress, serverPort);
             //阻塞当前线程并保持应用程序运行，直到服务器通道关闭
-
+            channelFuture.channel().closeFuture().sync();
             //添加一个钩子函数
+            Runtime.getRuntime().addShutdownHook(new Thread(() ->
+            {
+                logger.info("ShutdownHook execute start...");
+                logger.info("Netty NioEventLoopGroup shutdownGracefully...");
+                logger.info("Netty NioEventLoopGroup shutdownGracefully2...");
+                boss.shutdownGracefully();
+                worker.shutdownGracefully();
+                logger.info("ShutdownHook execute end...");
+            }, "Allen-thread"));
+        }finally {
+            boss.shutdownGracefully();
+            worker.shutdownGracefully();
         }
     }
 
