@@ -12,9 +12,7 @@ import org.kkoneone.rpc.protocol.RpcProtocol;
  * @name：RpcRequestHandler
  * @Date：2023/12/4 14:50
  */
-public class RpcRequestHandler {
-
-    SimpleChannelInboundHandler<RpcProtocol<RpcRequest>>;
+public class RpcRequestHandler extends SimpleChannelInboundHandler<RpcProtocol<RpcRequest>>{
 
     public RpcRequestHandler() {}
 
