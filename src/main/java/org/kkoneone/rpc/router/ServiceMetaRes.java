@@ -16,7 +16,7 @@ public class ServiceMetaRes {
     // 当前服务节点
     private ServiceMeta curServiceMeta;
 
-    // 剩余服务节点
+    // 剩余服务节点 方便进行容错服务选择
     private Collection<ServiceMeta> otherServiceMeta;
 
     public Collection<ServiceMeta> getOtherServiceMeta() {
