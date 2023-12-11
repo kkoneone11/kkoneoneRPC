@@ -6,4 +6,5 @@ package org.kkoneone.rpc.Filter;
  * @Date：2023/12/1 14:22
  */
 public interface ServiceAfterFilter extends Filter {
+
 }

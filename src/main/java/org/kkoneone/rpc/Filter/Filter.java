@@ -8,4 +8,5 @@ package org.kkoneone.rpc.Filter;
  */
 public interface Filter {
     void doFilter(FilterData filterData);
+
 }

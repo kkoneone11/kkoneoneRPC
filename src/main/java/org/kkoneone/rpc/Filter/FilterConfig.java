@@ -48,4 +48,5 @@ public class FilterConfig {
     public static FilterChain getClientAfterFilterChain(){
         return clientAfterFilterChain;
     }
+
 }

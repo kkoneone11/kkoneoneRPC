@@ -15,6 +15,7 @@ import java.util.Map;
 @Data
 public class FilterData {
 
+
     private String serviceVersion;
     private long timeout;
     private long retryCount;
