@@ -19,6 +19,7 @@ public class RpcEncoder extends MessageToByteEncoder<RpcProtocol<Object>> {
     protected void encode(ChannelHandlerContext ctx, RpcProtocol<Object> msg, ByteBuf byteBuf) throws Exception {
         // 获取消息头类型
         MsgHeader header = msg.getHeader();
+        //往byteBuf流里写入数据
         // 写入魔数(安全校验，可以参考java中的CAFEBABE)
         byteBuf.writeShort(header.getMagic());
         // 写入版本号

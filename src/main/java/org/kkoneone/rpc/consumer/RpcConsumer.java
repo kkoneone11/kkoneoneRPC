@@ -66,7 +66,7 @@ public class RpcConsumer {
                 }
             });
 
-            //向管道异步写入数据
+            //向管道异步写入数据传递给消息提供方
             future.channel().writeAndFlush(protocol);
         }
 

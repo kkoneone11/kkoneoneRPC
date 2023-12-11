@@ -54,7 +54,7 @@ public class RpcDecoder extends ByteToMessageDecoder {
         final String serialization = new String(bytes);
         // 8.读取消息体长度
         int dataLength = in.readInt();
-        // 如果可读字节数小于消息体长度，说明还没有接收完整个消息体，回退并返回
+        // 如果可读字节数小于消息体长度，说明还没有接收完整个消息体，回退并返回(半包问题)
         if(in.readableBytes() < dataLength){
             // 回退标记位置
             in.resetReaderIndex();
