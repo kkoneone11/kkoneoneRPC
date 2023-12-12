@@ -20,8 +20,10 @@ public class ExtensionLoader {
 
     private Logger logger = LoggerFactory.getLogger(ExtensionLoader.class);
 
+    //系统端配置SPI
     private static String SYS_EXTENSION_LOADER_DIR_PREFIX = "META-INF/xrpc/";
 
+    //客户配置SPI
     private static String DIY_EXTENSION_LOADER_DIR_PREFIX = "META-INF/rpc/";
 
     private static String[] prefixs = {SYS_EXTENSION_LOADER_DIR_PREFIX, DIY_EXTENSION_LOADER_DIR_PREFIX};
@@ -31,7 +33,7 @@ public class ExtensionLoader {
     //存放bean定义信息 key：接口 value：接口子类s
     private static Map<String, Map<String,Class>> extensionClassCaches = new ConcurrentHashMap<>();
 
-    // 存放实例化的bean
+    // 存放实例化的bean 是当需要用到这个bean才会进行加载到map中如果不需要的话则先不加载
     private static Map<String, Object> singletonsObject = new ConcurrentHashMap<>();
 
 
@@ -101,7 +103,7 @@ public class ExtensionLoader {
 
 
     /**
-     * 根据spi机制初始化bean的信息放入map  从SPI配置文件中加载指定类的
+     * 根据spi机制加载bean的信息放入map  从SPI配置文件中加载指定类的
      * @param clazz
      * @throws IOException
      * @throws ClassNotFoundException
