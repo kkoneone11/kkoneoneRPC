@@ -1,4 +1,4 @@
-package org.kkoneone.rpc.protocol.handler;
+package org.kkoneone.rpc.protocol.handler.consumer;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
